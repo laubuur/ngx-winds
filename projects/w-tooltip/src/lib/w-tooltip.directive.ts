@@ -2,17 +2,19 @@ import { Directive, ElementRef, HostListener, Input, ViewContainerRef, TemplateR
 
 
 @Directive({
-    selector: '[tooltip]'
+    selector: '[w-tooltip]'
 })
 
 export class WTooltipDirective {
 
-    @Input('tooltip') value!: string;
-    @Input('position') position!: string;
-    @Input('animation') animation: boolean = true;
-    @Input('html') html: boolean = false;
+    @Input('w-tooltip') value!: string;
+    @Input('w-position') position!: string;
+    @Input('w-animation') animation: boolean = true;
+    @Input('w-html') html: boolean = false;
+    @Input('w-class') wClass: string | undefined = undefined;
     private tooltip: HTMLElement | undefined;
-    private offset: number = 10;
+    private offset: number = 5;
+    private background: string = 'slate-700';
 
     constructor(
         private el: ElementRef,
@@ -48,8 +50,9 @@ export class WTooltipDirective {
             }
             
             this.renderer.appendChild(document.body, this.tooltip);
-            this.addClasses('absolute bg-slate-700 text-white text-xs w-tooltip p-1 rounded');
+            this.addClasses('w-tooltip absolute text-white text-xs p-1 rounded bg-slate-700');
             this.addClasses('after:absolute after:content-[" "] after:border-4');
+            if (this.wClass) this.renderer.addClass(this.tooltip,this.wClass);
             
             if (this.animation)  this.setAnimation();
 
@@ -76,23 +79,23 @@ export class WTooltipDirective {
             this.addClasses('after:top-2/4 after:mt-[-4px]');
             if (this.position == 'left') {
                 left = parentRect.left - elRect.width - this.offset;
-                this.addClasses('after:left-full after:border-y-transparent after:border-r-transparent after:border-l-slate-700');
+                this.addClasses('w-tooltip-left after:left-full after:border-y-transparent after:border-r-transparent after:border-l-slate-700');
             }
             else {
                 left = parentRect.left + parentRect.width + this.offset;
-                this.addClasses('after:right-full after:border-y-transparent after:border-r-slate-700 after:border-l-transparent');
+                this.addClasses('w-tooltip-right after:right-full after:border-y-transparent after:border-r-slate-700 after:border-l-transparent');
             }
         }
         else if ((this.position == 'bottom' || this.position == 'top') && this.tooltip && elRect) {
             left = ((parentRect.width - elRect.width) / 2 ) + parentRect.left;
             this.addClasses('after:left-2/4 after:ml-[-4px]');
             if (this.position == 'bottom') {
-                this.addClasses('after:bottom-full after:border-t-transparent after:border-b-slate-700 after:border-x-transparent');
+                this.addClasses('w-tooltip-bottom after:bottom-full after:border-t-transparent after:border-b-slate-700 after:border-x-transparent');
                 
                 top = parentRect.top + parentRect.height + this.offset;
             }
             else {
-                this.addClasses('after:top-full after:border-t-slate-700 after:border-x-transparent after:border-b-transparent');
+                this.addClasses('w-tooltip-right after:top-full after:border-t-slate-700 after:border-x-transparent after:border-b-transparent');
                 top = parentRect.top - elRect.height - this.offset;
             }
         }
@@ -101,7 +104,7 @@ export class WTooltipDirective {
         this.renderer.setStyle(this.tooltip, 'left', left+'px');
     }
 
-    private addClasses(cl: string, target = this.tooltip): void {
+    public addClasses(cl: string, target = this.tooltip): void {
         let classes = cl.split(' ');
         for (let c of classes) {
             if (c != '' && c!= ' ') this.renderer.addClass(this.tooltip, c);
