@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import { WTooltipModule } from 'w-tooltip';
+import { WdsCalendarModule } from 'wds-calendar';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { WTooltipModule } from 'w-tooltip';
   ],
   imports: [
     BrowserModule,
-    WTooltipModule
+    WTooltipModule,
+    WdsCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

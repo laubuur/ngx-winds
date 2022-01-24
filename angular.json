@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "css"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -25,13 +25,13 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -93,13 +93,13 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -133,6 +133,37 @@
             "main": "projects/w-tooltip/src/test.ts",
             "tsConfig": "projects/w-tooltip/tsconfig.spec.json",
             "karmaConfig": "projects/w-tooltip/karma.conf.js"
+          }
+        }
+      }
+    },
+    "wds-calendar": {
+      "projectType": "library",
+      "root": "projects/wds-calendar",
+      "sourceRoot": "projects/wds-calendar/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/wds-calendar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/wds-calendar/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/wds-calendar/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/wds-calendar/src/test.ts",
+            "tsConfig": "projects/wds-calendar/tsconfig.spec.json",
+            "karmaConfig": "projects/wds-calendar/karma.conf.js"
           }
         }
       }

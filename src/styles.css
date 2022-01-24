@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 @layer components {
-    .proute {
-        @apply bg-red-300 #{!important};
+    .custom-tooltip {
+        @apply text-red-800 !important;
     } 
 }

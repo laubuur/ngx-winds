@@ -1,0 +1,64 @@
+
+    <!-- <div class="calendar-top">
+        <div *ngIf="selectedDate != null" class="has-text-primary" style="font-size: 2rem; padding-right: 0.3rem">
+            {{getString(selectedDate.getDate(), 'day')}}
+        </div>
+        <div *ngIf="selectedDate != null">
+            <div style="font-size: 0.9rem; margin-bottom: -0.1rem">
+                {{months[selectedDate.getMonth()]}} {{selectedDate?.getFullYear()}}
+            </div>
+            <div style="font-size: 0.7rem">{{selectedDate.getDay() != 0 ? daysFull[selectedDate.getDay() - 1] : daysFull[6] }}</div>
+        </div>
+        <div *ngIf="selectedDate == null" class="has-text-primary" style="font-size: 2rem;">--</div>
+    </div>
+    <div class="calendar-select has-background-primary has-text-white">
+        <div style="padding-left: 0.5rem" (click)="changeMonth(-1)" class="link"><i class="fas fa-chevron-left"></i>
+        </div>
+        <div>{{months[calendarDate.getMonth()]}} {{calendarDate.getFullYear()}}</div>
+        <div style="padding-right: 0.5rem" (click)="changeMonth(1)" class="link"><i
+                class="fas fa-chevron-right"></i></div>
+    </div> -->
+    <div class="max-w-7xl mx-auto">
+        
+        <div>
+            <span (click)="changeMonth(-1)"><<<</span> {{months[getCurrentMonth()]}} {{getCurrentYear()}} <span (click)="changeMonth(1)">>>></span>
+        </div>
+        <div class="grid" style="grid-template-columns: repeat(7, minmax(120px, 1fr)); grid-template-rows: 30px;  grid-auto-rows: 120px; overflow: auto;">
+            <div *ngFor="let day of days;" class="uppercase font-bold text-slate-600 text-center">
+                {{day}}
+            </div>
+            <ng-container *ngFor="let week of weekArray(); index as i">
+                <div *ngFor="let day of days; index as j" class="border" [class.disabled]="fullDayMonth[i][j+1] == ''">
+                    <div *ngIf="fullDayMonth[i][j+1] != ''" class="text-right pt-2 pr-2 text-slate-500">{{getString(fullDayMonth[i][j+1], 'day')}}</div>
+                    <div *ngIf="getEvent(fullDayMonth[i][j+1])[0]?.title">
+                        <div class="border-l-4 m-1 pl-2 rounded-sm" *ngFor="let event of getEvent(fullDayMonth[i][j+1])"
+                        [ngClass]="{'border-red-500 bg-red-200 text-red-800':event.color == 'red',
+                        'border-blue-500 bg-blue-200 text-blue-800':event.color == 'blue'}">
+                            {{event.title}}
+                        </div>
+                    </div> 
+                </div>
+            </ng-container>
+    
+            
+        </div>
+    </div>
+    
+    <!-- <table class="max-w-full">
+        <tr>
+            <td class="max-w-md" *ngFor="let day of days;">{{day}}
+            </td>
+        </tr>
+        <tr *ngFor="let week of weekArray(); index as i">
+            <td *ngFor="let day of days; index as j" (click)="selectDate(fullDayMonth[i][j+1])">
+                <div class="" [class.is-selected]="isDateSelected(fullDayMonth[i][j+1])"
+                    [class.link]="fullDayMonth[i][j+1] != ''">
+                    <div *ngIf="fullDayMonth[i][j+1] != ''">{{getString(fullDayMonth[i][j+1], 'day')}}</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="">
+        <div class="" (click)="today()">Aujourd'hui</div>
+        <div class="" (click)="clear()">Effacer</div>
+    </div> -->

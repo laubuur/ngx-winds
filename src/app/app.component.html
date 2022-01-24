@@ -3,17 +3,29 @@
         Tooltip
     </div>
     <div class="flex gap-5 text-center">
-        <div class="border-2 border-purple-800 w-28" w-tooltip="left tooltip" w-position="left" >
-            Left tooltip
-        </div>
         <div class="border-2 border-purple-800 w-28" w-tooltip="right tooltip" w-position="right" classes="bg-red-300 w-4">
             Right tooltip
         </div>
-        <div class="border-2 border-purple-800 w-28" w-tooltip="top tooltip" w-position="top" w-class='proute'>
+        <div class="border-2 border-purple-800 w-28" w-tooltip="left tooltip" w-position="left" >
+            Left tooltip
+        </div>
+        <div class="border-2 border-purple-800 w-28" w-tooltip="top tooltip" w-position="top">
             Top tooltip
         </div>
         <div class="border-2 border-purple-800 w-28" w-tooltip="bottom tooltip" w-position="bottom">
             Bottom tooltip
         </div>
+        <div class="border-2 border-purple-800 w-28" w-tooltip="html<br><strong>tooltip</strong>" w-position="right" [w-html]="true">
+            HTML tolltip
+        </div>
+        <div class="border-2 border-purple-800 w-28" w-tooltip="custom design" w-class="proute" w-position="right">
+            Custom tooltip
+        </div>
+        <div class="border-2 border-purple-800 w-28" w-tooltip="No animation tooltip"  w-position="right" [w-animation]="false">
+            No animations
+        </div>
     </div>
+</div>
+<div>qsd
+    <lib-wds-calendar></lib-wds-calendar>
 </div>

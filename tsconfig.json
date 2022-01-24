@@ -26,6 +26,10 @@
       "w-tooltip": [
         "dist/w-tooltip/w-tooltip",
         "dist/w-tooltip"
+      ],
+      "wds-calendar": [
+        "dist/wds-calendar/wds-calendar",
+        "dist/wds-calendar"
       ]
     }
   },
