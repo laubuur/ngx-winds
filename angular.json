@@ -167,6 +167,37 @@
           }
         }
       }
+    },
+    "w-button": {
+      "projectType": "library",
+      "root": "projects/w-button",
+      "sourceRoot": "projects/w-button/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/w-button/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/w-button/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/w-button/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/w-button/src/test.ts",
+            "tsConfig": "projects/w-button/tsconfig.spec.json",
+            "karmaConfig": "projects/w-button/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-winds"

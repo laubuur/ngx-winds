@@ -23,6 +23,10 @@
       "dom"
     ],
     "paths": {
+      "w-button": [
+        "dist/w-button/w-button",
+        "dist/w-button"
+      ],
       "w-tooltip": [
         "dist/w-tooltip/w-tooltip",
         "dist/w-tooltip"
